@@ -28,7 +28,7 @@ document.onkeyup = function(event){
 	//if it is then it pushes it into the empty guesses array
 	//if it is not then the game alerts to choose a letter
 	if (availCharacters.includes(userGuess) && alreadyGuessed.indexOf(userGuess) == -1 ){
-	alreadyGuessed.push(userGuess);
+	alreadyGuessed.push(userGuess); 
 	}
 	else{
 	console.log("Please Choose a Letter!");
