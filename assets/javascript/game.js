@@ -92,7 +92,7 @@ document.onkeyup = function(event){
                 wins++;
                 document.querySelector('#wins').innerHTML = wins;
                 reset();
-                if (wins > 2){
+                if (wins > 10){
                 	alert("Congratulations!");
                 	resetWinsLosses();
                 }
@@ -102,7 +102,7 @@ document.onkeyup = function(event){
             losses++;
             document.querySelector('#losses').innerHTML = losses;
             reset();
-            if (losses > 2){
+            if (losses > 10){
             	alert("Try Again!");
             	resetWinsLosses();
             }
