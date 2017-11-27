@@ -18,7 +18,6 @@ var guessedLetters =[];
 //++++++++++++++++Functions
 
 //letter to guess function
-
 var updateletterToGuess = function(){
     this.letterToGuess = this.availCharacters[Math.floor(Math.random() * this.availCharacters.length)];
 };
@@ -28,14 +27,19 @@ var updateGuessesLeft = function () {
 	document.querySelector("#GuessesLeft").innerHTML = guessesLeft;
 	};
 
-
-var updateGuessesSoFar = function(){
+var updateAlreadyGuessed = function(){
     document.querySelector("#Guesses").innerHTML = guessedLetters.join(', ');
 };
 
+var updateWins = function(){
+	document.querySelector("#wins").innerHTML = wins;
+}
+
+var updateLosses = function(){
+	document.querySelector("#losses").innerHTML = losses;
+}
 
 // game reset function
-  
 var reset = function(){
 	totalGuesses = 10;
 	guessesLeft = 10;
@@ -43,7 +47,7 @@ var reset = function(){
 
 	updateGuessesLeft();
 	updateletterToGuess();
-	updateGuessesSoFar();
+	updateAlreadyGuessed();
 }
 
 var resetWinsLosses = function(){
@@ -54,21 +58,20 @@ var resetWinsLosses = function(){
 	guessesLeft = 10;
 	guessedLetters = [];
 
+	updateWins();
+	updateLosses();
 	updateGuessesLeft();
 	updateletterToGuess();
-	updateGuessesSoFar();
+	updateAlreadyGuessed();
 
 }
 
 updateGuessesLeft();
-updateGuessesSoFar();
+updateAlreadyGuessed();
 
-
-
+//main body of game
 document.onkeyup = function(event){
 	var userGuess = event.key.toLowerCase();
-
-
 
 	if (availCharacters.indexOf(userGuess) === -1){
 		alert("Please choose a letter!");
@@ -82,21 +85,29 @@ document.onkeyup = function(event){
 	}
 
 	updateGuessesLeft();
-	updateGuessesSoFar();
+	updateAlreadyGuessed();
 
 		if (guessesLeft > 0){
         	if (userGuess === letterToGuess){
                 wins++;
                 document.querySelector('#wins').innerHTML = wins;
                 reset();
+                if (wins > 2){
+                	alert("Congratulations!");
+                	resetWinsLosses();
+                }
         	}
         } 
      	else if (guessesLeft == 0){
             losses++;
             document.querySelector('#losses').innerHTML = losses;
             reset();
+            if (losses > 2){
+            	alert("Try Again!");
+            	resetWinsLosses();
+            }
         }
 	
-
+	
 	};
 
